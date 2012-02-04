@@ -18,10 +18,6 @@ p. Recommended:
 
 * Textpattern v4.4.1 or newer.
 
-h2. Installation and usage
-
-p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use new tags that plugin includes like others.
-
 h2. Tag and attributes
 
 bc. <txp:rah_swap db="myNewDatabase" />
