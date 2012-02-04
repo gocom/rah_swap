@@ -141,8 +141,6 @@ p. In the above, as the user doesn't have a password, and the host is @localhost
 
 h2. Examples
 
-* "Simple usage":#example-1
-
 h3. Simple usage example
 
 p. The tags wrapped in the @<txp:rah_swap>@ tags, will be pulled from database named as "promotional_content_db".
