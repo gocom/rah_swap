@@ -1,0 +1,160 @@
+h1. rah_swap
+
+p. Swap connected MySQL database on the fly. The plugin has the potential to allow pulling templates, articles and other content from different databases. Rah_swap adds a single neat "Textpattern":http://textpattern.com tag that can be used to change and bend connected database server link.
+
+h2. List of features
+
+* Change connected database, server or used credentials based on situation.
+* Can be used to power centralized database used to host template files.
+* Or it can be used to provide additional protection by switching the user (and thus privileges) based on the situation.
+
+h2. Requirements
+
+p. Minimum:
+
+* Textpattern v4.0.4 or newer.
+
+p. Recommended:
+
+* Textpattern v4.4.1 or newer.
+
+h2. Installation and usage
+
+p. The general behavior stands: paste plugin code to the plugin installer textarea and run the automatic setup. Then just activate the plugin and you are ready to use new tags that plugin includes like others.
+
+h2. Tag and attributes
+
+bc. <txp:rah_swap db="myNewDatabase" />
+
+p. The plugin's main single tag is @<txp:rah_swap>@ and attributes for it are as follows.
+
+p. *db*
+Database's name. If @db@ is the only attribute set, currently connected database is changed, but the connection's credentials (user, password) are kept the same. This leads to faster connecting as an actual new connection isn't opened, but old one is reused.
+Example: @db=""@ Default: @""@
+
+p. *user*
+Username used to connect to the database.
+Example: @user=""@ Default: @""@
+
+p. *pass*
+User's password. Can be left empty if the user doesn't have a password.
+Example: @pass=""@ Default: @""@
+
+p. *host*
+The database (MySQL) server. The @host@ can contain a hostname, a port number or a path to a local socket. By default @localhost@ is used as the host.
+Example: @host="hostname:3306"@ Default: @"localhost"@
+
+p. *dbcharset*
+Database's character set. Usually this attribute should *not* be used, and should be left as it is. Note that Textpattern uses @UTF-8@, and using non-unicode character set can cause unexpected results.
+Example: @dbcharset="latin1"@ Default: @"utf8"@
+
+p. *client_flags*
+Extra flags passed to the database client. Normally you shouldn't worry about this attribute, and usually the attribute should *not* be used.
+Example: @client_flags=""@ Default: @"0"@
+
+p. *reset*
+If set to @1@, resets the original database connection the Textpattern installation uses. If the tag is used as a container, resetting is done automatically on the closing tag pair. When rah_swap's tags are used as single tags, use @reset@ when you want to resume to Textpattern's normal database connection.
+Example: @reset="1"@ Default: @"0"@
+
+p. *link*
+Name of predefined database credentials stack. If the @link@ attribute is defined, all other tag attributes are ignored. Instead of the attributes, the credentials are pulled from a predefined config array placed to Textpattern's configuration file (@config.php@).
+Example: @link="template_db"@ Default: @""@
+
+h2. Using a separate configuration file
+
+p. With the help of the tag's @link@ attribute database connection credentials can be saved to and pulled from Textpattern's configuration file, @/textpattern/config.php@.
+
+p. Defining the database's connection credentials is done basically in the same way as Textpattern's core database details are defined. Rah_swap expects a global variable named as @$rah_swap@, containing an multi-dimensional array. Example definition would look similar to following:
+
+bc. $rah_swap['db_link_name'] = array(
+	'db' => 'MyDatabase',
+	'user' => 'MyUsername',
+	'pass' => 'MyPassword',
+	'host' => 'localhost',
+);
+
+p. Where in above, @db_link_name@ would be the name of the configuration stack and would be used as a @rah_swap@ tag's @link@ attribute's value.
+
+bc. <txp:rah_swap link="db_link_name" />
+
+p. Multiple definitions can be set the same way. Same code, different stack name and connection details.
+
+bc.. $rah_swap['templates'] = array(
+	'db' => 'central_templates',
+	'user' => 'user1',
+	'pass' => 'pass1',
+	'host' => 'localhost',
+);
+
+$rah_swap['promotional'] = array(
+	'db' => 'promotional',
+	'user' => 'user2',
+	'pass' => 'pass2',
+	'host' => 'localhost',
+);
+
+$rah_swap['address_book'] = array(
+	'db' => 'client_network',
+	'user' => 'user3',
+	'pass' => 'pass3',
+	'host' => 'localhost',
+);
+
+p. Connecting to those different databases then happens the tag's @link@ attribute as follows:
+
+bc.. <txp:rah_swap link="address_book" />
+
+<!--
+	Fetch something from the address book
+-->
+
+<txp:article_custom />
+
+<!--
+	Fetch something from the template db
+-->
+
+<txp:rah_swap link="templates" />
+
+<txp:output_form form="cdn_template_banner_256x145" />
+
+<!--
+	Reset the default, original database connection
+-->
+
+<txp:rah_swap reset="1" />
+
+p. Features and rules that apply to the tag's attributes, also apply to defined configuration stacks. For instance connected database can be switched while keeping the current user and connection. Just as with the tag, set only the database's name:
+
+bc. $rah_swap['db_link_name'] = array(
+	'db' => 'client_network',
+);
+
+p. Also the default values apply. By default @host@ will be set as @localhost@. If your host is @localhost@, you don't have to specifically define it.
+
+bc. $rah_swap['db_link_name'] = array(
+	'db' => 'database',
+	'user' => 'username',
+);
+
+p. In the above, as the user doesn't have a password, and the host is @localhost@, neither is needed.
+
+h2. Examples
+
+* "Simple usage":#example-1
+
+h3. Simple usage example
+
+p. The tags wrapped in the @<txp:rah_swap>@ tags, will be pulled from database named as "promotional_content_db".
+
+bc.. <txp:rah_swap db="promotional_content_db">
+	<!--
+		Content pulled from "promotional_content_db" database
+	-->
+
+	<txp:article_custom category="promo_2011_06">
+		<txp:body />
+	</txp:article_custom>
+</txp:rah_swap>
+
+p. In the example @promotional_content_db@ would be a database used by second Textpattern installation. The installation would be used to host promotional content and campaigns redistributed to multiple sites.
