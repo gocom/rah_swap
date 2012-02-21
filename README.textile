@@ -18,14 +18,14 @@ p. Recommended:
 
 * Textpattern v4.4.1 or newer.
 
-h2. Tag and attributes
+h2. The tag and attributes
 
 bc. <txp:rah_swap db="myNewDatabase" />
 
-p. The plugin's main single tag is @<txp:rah_swap>@ and attributes for it are as follows.
+p. The plugin's tag is @<txp:rah_swap>@. It's a single tag, and is used to execute the on fly DB swapping magic. Attributes for it are as follows.
 
 p. *db*
-Database's name. If @db@ is the only attribute set, currently connected database is changed, but the connection's credentials (user, password) are kept the same. This leads to faster connecting as an actual new connection isn't opened, but old one is reused.
+Database's name. If @db@ is the only attribute set, currently connected database is changed using current connection's credentials (user, password, host). A complete new link isn't formed, but merely the database is swapped reusing the old connection. This leads to faster connecting, than when a new link is done using different credentials.
 Example: @db=""@ Default: @""@
 
 p. *user*
@@ -38,18 +38,18 @@ Example: @pass=""@ Default: @""@
 
 p. *host*
 The database (MySQL) server. The @host@ can contain a hostname, a port number or a path to a local socket. By default @localhost@ is used as the host.
-Example: @host="hostname:3306"@ Default: @"localhost"@
+Example: @host="hostname.tld:3306"@ Default: @"localhost"@
 
 p. *dbcharset*
-Database's character set. Usually this attribute should *not* be used, and should be left as it is. Note that Textpattern uses @UTF-8@, and using non-unicode character set can cause unexpected results.
+Database's character set. Usually this attribute should *not* be used, but should be left as it is. Textpattern uses @UTF-8@, and using non-unicode character set can cause unexpected results.
 Example: @dbcharset="latin1"@ Default: @"utf8"@
 
 p. *client_flags*
-Extra flags passed to the database client. Normally you shouldn't worry about this attribute, and usually the attribute should *not* be used.
+Extra flags passed to the database client. Normally you shouldn't worry about this attribute. Usually the attribute should *not* be used.
 Example: @client_flags=""@ Default: @"0"@
 
 p. *reset*
-If set to @1@, resets the original database connection the Textpattern installation uses. If the tag is used as a container, resetting is done automatically on the closing tag pair. When rah_swap's tags are used as single tags, use @reset@ when you want to resume to Textpattern's normal database connection.
+If set to @1@, resets the original database connection the Textpattern installation uses. If the tag is used as a container, resetting is done automatically on the closing tag pair without the need of @reset@ attribute. When rah_swap's tags are used as self-closing single tags, use @reset@ when you want to resume to Textpattern's original database connection.
 Example: @reset="1"@ Default: @"0"@
 
 p. *link*
@@ -60,7 +60,7 @@ h2. Using a separate configuration file
 
 p. With the help of the tag's @link@ attribute database connection credentials can be saved to and pulled from Textpattern's configuration file, @/textpattern/config.php@.
 
-p. Defining the database's connection credentials is done basically in the same way as Textpattern's core database details are defined. Rah_swap expects a global variable named as @$rah_swap@, containing an multi-dimensional array. Example definition would look similar to following:
+p. Defining the database's connection credentials is done basically in the same way as Textpattern's core database details are defined. Rah_swap expects a global variable named as @$rah_swap@, containing a multi-dimensional array. Example definition would look similar to following:
 
 bc. $rah_swap['db_link_name'] = array(
 	'db' => 'MyDatabase',
@@ -96,7 +96,7 @@ $rah_swap['address_book'] = array(
 	'host' => 'localhost',
 );
 
-p. Connecting to those different databases then happens the tag's @link@ attribute as follows:
+p. Connecting to those different databases then happens by using the tag's @link@ attribute.
 
 bc.. <txp:rah_swap link="address_book" />
 
@@ -120,13 +120,13 @@ bc.. <txp:rah_swap link="address_book" />
 
 <txp:rah_swap reset="1" />
 
-p. Features and rules that apply to the tag's attributes, also apply to defined configuration stacks. For instance connected database can be switched while keeping the current user and connection. Just as with the tag, set only the database's name:
+p. Features and rules that apply to the tag's attributes, also apply to defined configuration stacks. For instance connected database can be switched while keeping the current user and connection. Just as with the tag, set only the database's name.
 
 bc. $rah_swap['db_link_name'] = array(
 	'db' => 'client_network',
 );
 
-p. Also the default values apply. By default @host@ will be set as @localhost@. If your host is @localhost@, you don't have to specifically define it.
+p. Also, the default values apply. By default @host@ will be set as @localhost@. If your host is @localhost@, you don't have to specifically define it.
 
 bc. $rah_swap['db_link_name'] = array(
 	'db' => 'database',
