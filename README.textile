@@ -4,9 +4,8 @@ p. Swap connected MySQL database on the fly. The plugin has the potential to all
 
 h2. List of features
 
-* Change connected database, server or used credentials based on situation.
-* Can be used to power centralized database used to host template files.
-* Or it can be used to provide additional protection by switching the user (and thus privileges) based on the situation.
+* Change connected database, server or used credentials on the fly with a single tag.
+* Rah_swap can be used to power a centralized database hosting template files, snippets and downloads shared across multiple sites.
 
 h2. Requirements
 
@@ -22,10 +21,10 @@ h2. The tag and attributes
 
 bc. <txp:rah_swap db="myNewDatabase" />
 
-p. The plugin's tag is @<txp:rah_swap>@. It's a single tag, and is used to execute the on fly DB swapping magic. Attributes for it are as follows.
+p. The plugin's tag is @<txp:rah_swap>@. It's a single tag, and is used to execute the database swapping magic. Attributes for it are as follows.
 
 p. *db*
-Database's name. If @db@ is the only attribute set, currently connected database is changed using current connection's credentials (user, password, host). A complete new link isn't formed, but merely the database is swapped reusing the old connection. This leads to faster connecting, than when a new link is done using different credentials.
+Database's name. If @db@ is the only attribute set, currently connected database is changed using current connection's credentials (user, password, host). A new link isn't created, but merely the database is swapped reusing the old connection.
 Example: @db=""@ Default: @""@
 
 p. *user*
@@ -41,7 +40,7 @@ The database (MySQL) server. The @host@ can contain a hostname, a port number or
 Example: @host="hostname.tld:3306"@ Default: @"localhost"@
 
 p. *dbcharset*
-Database's character set. Usually this attribute should *not* be used, but should be left as it is. Textpattern uses @UTF-8@, and using non-unicode character set can cause unexpected results.
+Database's character set. Usually this attribute should *not* be used, but should be left as it is. Textpattern uses UTF-8, and using non-unicode character set can cause unexpected results.
 Example: @dbcharset="latin1"@ Default: @"utf8"@
 
 p. *client_flags*
@@ -120,13 +119,13 @@ bc.. <txp:rah_swap link="address_book" />
 
 <txp:rah_swap reset="1" />
 
-p. Features and rules that apply to the tag's attributes, also apply to defined configuration stacks. For instance connected database can be switched while keeping the current user and connection. Just as with the tag, set only the database's name.
+p. Features and rules that apply to the tag's attributes, also apply to defined configuration stacks. For instance, connected database can be switched while keeping the current user and connection. Just as with the tag, set only the database's name.
 
 bc. $rah_swap['db_link_name'] = array(
 	'db' => 'client_network',
 );
 
-p. Also, the default values apply. By default @host@ will be set as @localhost@. If your host is @localhost@, you don't have to specifically define it.
+p. Default values apply too. By default @host@ will be set as @localhost@. If your host is @localhost@, you don't have to specifically define it.
 
 bc. $rah_swap['db_link_name'] = array(
 	'db' => 'database',
