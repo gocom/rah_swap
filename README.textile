@@ -150,3 +150,15 @@ bc.. <txp:rah_swap db="promotional_content_db">
 </txp:rah_swap>
 
 p. In the example @promotional_content_db@ would be a database used by second Textpattern installation. The installation would be used to host promotional content and campaigns redistributed to multiple sites.
+
+h3. Showing downloads from a second installation
+
+bc. <txp:rah_swap db="2ndSiteWithDLD">
+	<txp:file_download>
+		<txp:file_download_link>
+			<txp:file_download_name />
+		</txp:file_download_link>
+	</txp:file_download>
+</txp:rah_swap>
+
+p. Above serves file downloads from _2ndSiteWithDLD_ database using Textpattern's "file_download":http://textpattern.net/wiki/index.php?title=file_download, "file_download_link":http://textpattern.net/wiki/index.php?title=file_download_link and "file_download_name":http://textpattern.net/wiki/index.php?title=file_download_name tags.
