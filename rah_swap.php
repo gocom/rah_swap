@@ -46,7 +46,7 @@
 			$GLOBALS['DB'] = new DB;
 		}
 		
-		$r = !$reset && $thing !== NULL && ($reset = 1) ? parse($thing) : '';
+		$r = $thing !== NULL && ($reset = 1) ? parse($thing) : '';
 		
 		if($reset) {
 			mysql_close($GLOBALS['DB']->link);
