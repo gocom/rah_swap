@@ -14,7 +14,7 @@
 
 	function rah_swap($atts, $thing=NULL) {
 		
-		global $rah_swap, $txpcfg, $prefs, $is_article_body,;
+		global $rah_swap, $txpcfg, $prefs, $is_article_body;
 		
 		static $default_cfg = NULL;
 		
@@ -24,7 +24,7 @@
 		
 		if($is_article_body) {
 			if(!$prefs['allow_article_php_scripting']) {
-				trigger_error(gTxt('php_code_disabled_article'))
+				trigger_error(gTxt('php_code_disabled_article'));
 				return;
 			}
 			
