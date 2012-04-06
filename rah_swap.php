@@ -14,12 +14,30 @@
 
 	function rah_swap($atts, $thing=NULL) {
 		
-		global $rah_swap, $txpcfg;
+		global $rah_swap, $txpcfg, $prefs, $is_article_body,;
 		
 		static $default_cfg = NULL;
 		
-		if($default_cfg === NULL)
+		if($default_cfg === NULL) {
 			$default_cfg = $txpcfg;
+		}
+		
+		if($is_article_body) {
+			if(!$prefs['allow_article_php_scripting']) {
+				trigger_error(gTxt('php_code_disabled_article'))
+				return;
+			}
+			
+			elseif(!has_privs('article.php', $thisarticle['authorid'])) {
+				trigger_error(gTxt('php_code_forbidden_user'));
+				return;
+			}
+		}
+		
+		elseif(!$prefs['allow_page_php_scripting']) {
+			trigger_error(gTxt('php_code_disabled_page'));
+			return;
+		}
 		
 		if(isset($atts['link'])) {
 			
