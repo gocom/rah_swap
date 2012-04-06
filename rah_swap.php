@@ -21,8 +21,15 @@
 		if($default_cfg === NULL)
 			$default_cfg = $txpcfg;
 		
-		if(isset($atts['link']) && isset($rah_swap[$atts['link']]))
+		if(isset($atts['link'])) {
+			
+			if(!isset($rah_swap[$atts['link']])) {
+				trigger_error(gTxt('invalid_attribute_value', array('{name}' => $atts['link'])));
+				return;
+			}
+			
 			$atts = (array) $rah_swap[$atts['link']];
+		}
 
 		$opt = lAtts(array(
 			'link' => '',
