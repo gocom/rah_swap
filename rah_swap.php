@@ -62,9 +62,10 @@
 		
 		extract($opt);
 		
-		if(count($atts) == 1 && $db !== NULL)
+		if(count($atts) == 1 && $db !== NULL) {
 			mysql_select_db($db, $GLOBALS['DB']->link);
-
+		}
+		
 		else if(!$reset) {
 			mysql_close($GLOBALS['DB']->link);
 			$txpcfg = $opt;
