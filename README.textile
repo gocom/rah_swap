@@ -7,21 +7,19 @@ h2. List of features
 * Change connected database, server or used credentials on the fly with a single tag.
 * Rah_swap can be used to power a centralized database hosting template files, snippets and downloads shared across multiple sites.
 
-h2. Requirements
+h2. Basics
 
-p. Minimum:
+bc. <txp:rah_swap db="myNewDatabase">
+	...contained statement...
+</txp:rah_swap>
 
-* Textpattern v4.0.4 or newer.
+p. The plugin introduces a new tag, @<txp:rah_swap/>@. The tag can be used both as a container and as a single, self-closing tag.
 
-p. Recommended:
+p. When used as a container the database connection link is changed for just the wrapped code. The original link is restored on the closing tag pair.
 
-* Textpattern v4.4.1 or newer.
+h2. Attributes
 
-h2. The tag and attributes
-
-bc. <txp:rah_swap db="myNewDatabase" />
-
-p. The plugin's tag is @<txp:rah_swap>@. It's a single tag, and is used to execute the database swapping magic. Attributes for it are as follows.
+p. Attributes for @<txp:rah_swap>@ tag are as follows.
 
 p. *db*
 Database's name. If @db@ is the only attribute set, currently connected database is changed using current connection's credentials (user, password, host). A new link isn't created, but merely the database is swapped reusing the old connection.
