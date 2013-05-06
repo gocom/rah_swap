@@ -22,23 +22,9 @@
 			$default_cfg = $txpcfg;
 		}
 
-		if ($is_article_body)
+		if (!php('echo 1;'))
 		{
-			if (!$prefs['allow_article_php_scripting'])
-			{
-				trigger_error(gTxt('php_code_disabled_article'));
-				return;
-			}
-			else if(!has_privs('article.php', $thisarticle['authorid']))
-			{
-				trigger_error(gTxt('php_code_forbidden_user'));
-				return;
-			}
-		}
-		else if (!$prefs['allow_page_php_scripting'])
-		{
-			trigger_error(gTxt('php_code_disabled_page'));
-			return;
+			return '';
 		}
 
 		if (isset($atts['link']))
