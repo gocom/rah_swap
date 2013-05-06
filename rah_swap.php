@@ -14,7 +14,7 @@
 
 	function rah_swap($atts, $thing = null)
 	{	
-		global $rah_swap, $txpcfg, $prefs, $is_article_body;
+		global $rah_swap, $txpcfg, $is_article_body;
 		static $default_cfg = null;
 
 		if ($default_cfg === null)
