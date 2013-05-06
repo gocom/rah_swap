@@ -2,6 +2,12 @@ h1. rah_swap
 
 p. Swap connected MySQL database on the fly. The plugin has the potential to allow pulling templates, articles and other content from different databases. Rah_swap adds a single neat "Textpattern":http://textpattern.com tag that can be used to change and bend connected database server link.
 
+h2. Installing
+
+p. Using "Composer":http://getcomposer.org:
+
+bc. $ composer.phar require rah/rah_swap
+
 h2. Basics
 
 bc. <txp:rah_swap db="myNewDatabase">
