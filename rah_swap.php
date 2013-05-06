@@ -32,7 +32,7 @@
 			if (!isset($rah_swap[$atts['link']]))
 			{
 				trigger_error(gTxt('invalid_attribute_value', array('{name}' => $atts['link'])));
-				return;
+				return '';
 			}
 
 			$atts = (array) $rah_swap[$atts['link']];
