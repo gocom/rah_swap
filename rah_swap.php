@@ -62,7 +62,15 @@
 			$GLOBALS['DB'] = new DB;
 		}
 
-		$r = $thing !== null && ($reset = 1) ? parse($thing) : '';
+		if ($thing !== null)
+		{
+			$reset = 1;
+			$r = parse($thing);
+		}
+		else
+		{
+			$r = '';
+		}
 
 		if ($reset)
 		{
