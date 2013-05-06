@@ -2,11 +2,6 @@ h1. rah_swap
 
 p. Swap connected MySQL database on the fly. The plugin has the potential to allow pulling templates, articles and other content from different databases. Rah_swap adds a single neat "Textpattern":http://textpattern.com tag that can be used to change and bend connected database server link.
 
-h2. List of features
-
-* Change connected database, server or used credentials on the fly with a single tag.
-* Rah_swap can be used to power a centralized database hosting template files, snippets and downloads shared across multiple sites.
-
 h2. Basics
 
 bc. <txp:rah_swap db="myNewDatabase">
