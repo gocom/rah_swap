@@ -163,3 +163,9 @@ bc. <txp:rah_swap db="2ndSiteWithDLD">
 </txp:rah_swap>
 
 p. Above serves file downloads from _2ndSiteWithDLD_ database using Textpattern's "file_download":http://textpattern.net/wiki/index.php?title=file_download, "file_download_link":http://textpattern.net/wiki/index.php?title=file_download_link and "file_download_name":http://textpattern.net/wiki/index.php?title=file_download_name tags.
+
+h2. Changelog
+
+h3. Version 0.1.0 - upcoming
+
+* Initial release.
