@@ -164,8 +164,12 @@ bc. <txp:rah_swap db="2ndSiteWithDLD">
 
 p. Above serves file downloads from _2ndSiteWithDLD_ database using Textpattern's "file_download":http://textpattern.net/wiki/index.php?title=file_download, "file_download_link":http://textpattern.net/wiki/index.php?title=file_download_link and "file_download_name":http://textpattern.net/wiki/index.php?title=file_download_name tags.
 
+h2. Toolshed notice
+
+p. This is a toolshed project. Experimental and not part of the main supported product line of Rah. Not yet at least. Please use at your own risk.
+
 h2. Changelog
 
-h3. Version 0.1.0 - upcoming
+h3. Version 0.1.0 - 2013/05/06 - "Download":http://rahforum.biz/d/rah_swap_v0.1.0_zip.txt
 
 * Initial release.
