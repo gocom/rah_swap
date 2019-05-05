@@ -162,36 +162,27 @@ final class Rah_Swap
             }
         }
 
-        $opt = lAtts([
-            'link' => '',
+        extract(lAtts([
             'reset' => false,
-            'db' => null,
-            'user' => '',
-            'pass' => '',
-            'host' => 'localhost',
-            'dbcharset' => 'utf8',
-            'client_flags' => 0,
-        ], $atts);
+        ], $atts));
 
-        extract($opt);
-
-        if (count($atts) === 1 && $db !== null) {
-            $this->setUsedDatabase($db);
+        if (count($atts) === 1 && isset($atts['db'])) {
+            $this->setUsedDatabase($atts['db']);
         } elseif (!$reset) {
-            $this->setConfig($opt)->connect();
+            $this->setConfig($atts)->connect();
         }
 
         if ($thing !== null) {
             $reset = true;
-            $r = parse($thing);
+            $return = parse($thing);
         } else {
-            $r = '';
+            $return = '';
         }
 
         if ($reset) {
             $this->reset();
         }
 
-        return $r;
+        return $return;
     }
 }

@@ -22,35 +22,35 @@ h2. Attributes
 
 *db*
 Database's name. If @db@ is the only attribute set, currently connected database is changed using current connection's credentials (user, password, host). A new link isn't created, but merely the database is swapped reusing the old connection.
-Example: @db="myDatabase"@ Default: @""@
+Example: @db="myDatabase"@ Default: _undefined_
 
 *user*
 Username used to connect to the database.
-Example: @user="username"@ Default: @""@
+Example: @user="username"@ Default: _undefined_
 
 *pass*
 User's password. Can be left empty if the user doesn't have a password.
-Example: @pass="password"@ Default: @""@
+Example: @pass="password"@ Default: _undefined_
 
 *host*
 The database server. The @host@ can contain a hostname, a port number or a path to a local socket. Defaults to @localhost@.
-Example: @host="hostname.tld:3306"@ Default: @"localhost"@
+Example: @host="hostname.tld:3306"@ Default: _undefined_
 
 *dbcharset*
 Database's character set. Usually this attribute should *not* be used, but should be left as it is. Textpattern uses UTF-8, and using non-unicode character set can cause unexpected results.
-Example: @dbcharset="latin1"@ Default: @"utf8"@
+Example: @dbcharset="latin1"@ Default: _undefined_
 
 *client_flags*
 Extra flags passed to the database client. Normally you shouldn't worry about this attribute. Usually the attribute should *not* be used.
-Example: @client_flags=""@ Default: @"0"@
+Example: @client_flags=""@ Default: _undefined_
 
 *reset*
 A boolean attribute that when set, resets the database connection back to its original state. If the tag is used as a container, resetting is done automatically on the closing tag pair without the need of the @reset@ attribute. When rah_swap's tags are used as self-closing single tags, use @reset@ when you want to resume to Textpattern's original database connection.
-Example: @reset@ Default: _unset_
+Example: @reset@ Default: _undefined_
 
 *link*
 Name of predefined database credentials config item. If the @link@ attribute is defined, the used credentials are pulled from a pre-defined config array variable, @$rah_swap@, stored in Textpattern's configuration file, @config.php@.
-Example: @link="template_db"@ Default: _unset_
+Example: @link="template_db"@ Default: _undefined_
 
 h2. Configuration
 
