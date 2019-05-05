@@ -52,13 +52,13 @@ Example: @reset@ Default: _unset_
 Name of predefined database credentials config item. If the @link@ attribute is defined, the used credentials are pulled from a pre-defined config array variable, @$rah_swap@, stored in Textpattern's configuration file, @config.php@.
 Example: @link="template_db"@ Default: _unset_
 
-h2. Using a separate configuration file
+h2. Configuration
 
-With the help of the tag's @link@ attribute, database connection credentials can be saved to Textpattern's configuration file (i.e. @/textpattern/config.php@).
+With the help of the tag's @link@ attribute, database connection credentials can be saved to Textpattern's configuration file (i.e. @/textpattern/config.php@) instead of them being specified with the tag attributes.
 
 Defining the database's connection credentials is done basically in the same way as Textpattern's core database details are defined. Rah_swap expects a global variable named as @$rah_swap@, containing a multi-dimensional array, allowing multiple links to be configured. Example config would look similar to following:
 
-bc. $rah_swap['link1'] = [
+bc.. $rah_swap['link1'] = [
     'db' => 'MyDatabase1',
     'user' => 'MyUsername1',
     'pass' => 'MyPassword1',
@@ -72,7 +72,7 @@ $rah_swap['link2'] = [
     'host' => 'localhost',
 ];
 
-Where @link1@ and @link2@ would be the name of the link configurations and would be used as a @rah_swap@ tag's @link@ attribute's value.
+p. Where @link1@ and @link2@ would be the name of the link configurations and would be used as a @rah_swap@ tag's @link@ attribute's value.
 
 bc. <rah::swap link="link1" />
 <rah::swap link="link2" />
