@@ -177,7 +177,7 @@ final class Rah_Swap
 
         if (count($atts) === 1 && $db !== null) {
             $this->setUsedDatabase($db);
-        } else if (!$reset) {
+        } elseif (!$reset) {
             $this->setConfig($opt)->connect();
         }
 
