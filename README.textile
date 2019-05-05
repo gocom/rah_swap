@@ -103,7 +103,7 @@ bc. <rah::swap db="downloads">
 
 Above serves file downloads from **downloads** database using Textpattern's "file tags":https://docs.textpattern.com/tags/file-tags.
 
-h3. Using a self-closing tag
+h3. As a self-closing tag
 
 Templates are going to be fetched from **templates** database.
 
