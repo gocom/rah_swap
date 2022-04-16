@@ -119,9 +119,8 @@ The connection is reset back to normal using the @reset@ attribute.
 
 h2. Changelog
 
-h3. Version 0.2.0 - upcoming
+h3. Version 0.2.0 - 2022/04/17
 
-* Refactor.
 * Textpattern >= 4.7.0 and PHP >= 7.0 compatibility.
 * Now requires Textpattern >= 4.7.0.
 
