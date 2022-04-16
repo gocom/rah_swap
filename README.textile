@@ -1,6 +1,6 @@
 h1. rah_swap
 
-"Packagist":https://packagist.org/packages/rah/rah_swap | "Issues":https://github.com/gocom/rah_swap | "Donate":https://rahforum.biz/donate/rah_swap
+"Download":https://github.com/gocom/rah_swap/releases | "Packagist":https://packagist.org/packages/rah/rah_swap | "Issues":https://github.com/gocom/rah_swap/issues
 
 Swap connected "Textpattern CMS":https://textpattern.com MySQL database link on the fly using a template tag. The plugin has the potential to allow pulling templates, articles and other content from different databases.
 
@@ -9,6 +9,8 @@ h2. Install
 Using "Composer":https://getcomposer.org:
 
 bc. $ composer require rah/rah_swap
+
+Or "download":https://github.com/gocom/rah_swap/releases an installer package.
 
 h2. Basics
 
@@ -81,7 +83,7 @@ h2. Examples
 
 h3. Simple usage example
 
-The contents wrapped in the @<rah::_swap>@ tags will be pulled from database named as **promotional_content_db**.
+The contents wrapped in the @<rah::swap>@ tags will be pulled from database named as **promotional_content_db**.
 
 bc. <rah::swap db="promotional_content_db">
     <txp:article_custom category="promo_2011_06">
@@ -120,7 +122,7 @@ h2. Changelog
 h3. Version 0.2.0 - upcoming
 
 * Refactor.
-* Textpattern >=4.6.0 and PHP >=7.0 compatibility.
+* Textpattern >= 4.6.0 and PHP >= 7.0 compatibility.
 
 h3. Version 0.1.0 - 2013/05/06
 
