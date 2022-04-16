@@ -49,6 +49,7 @@ final class Rah_Swap
     private function getConfig(): array
     {
         global $txpcfg;
+
         return $txpcfg;
     }
 
@@ -60,7 +61,9 @@ final class Rah_Swap
     private function setConfig(array $config): self
     {
         global $txpcfg;
+
         $txpcfg = array_merge($this->defaultConfig, $config);
+
         return $this;
     }
 
@@ -82,6 +85,7 @@ final class Rah_Swap
     private function getLinks(): array
     {
         global $rah_swap;
+
         return (array) $rah_swap;
     }
 
@@ -110,7 +114,9 @@ final class Rah_Swap
     private function setUsedDatabase(string $name): self
     {
         global $DB;
+
         mysqli_select_db($DB->link, $name);
+
         return $this;
     }
 
@@ -122,9 +128,11 @@ final class Rah_Swap
     private function connect(): self
     {
         global $DB;
+
         mysqli_close($DB->link);
         $this->setConfig($this->getConfig());
         $DB = new DB;
+
         return $this;
     }
 
@@ -147,8 +155,6 @@ final class Rah_Swap
      */
     public function renderSwap(array $atts, $thing = null): string
     {
-        global $rah_swap, $txpcfg, $DB;
-
         if ($this->isAllowed() === false) {
             return '';
         }
@@ -164,7 +170,7 @@ final class Rah_Swap
 
         extract(lAtts([
             'reset' => false,
-        ], $atts));
+        ], $atts, false));
 
         if (count($atts) === 1 && isset($atts['db'])) {
             $this->setUsedDatabase($atts['db']);

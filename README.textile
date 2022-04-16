@@ -122,7 +122,8 @@ h2. Changelog
 h3. Version 0.2.0 - upcoming
 
 * Refactor.
-* Textpattern >= 4.6.0 and PHP >= 7.0 compatibility.
+* Textpattern >= 4.7.0 and PHP >= 7.0 compatibility.
+* Now requires Textpattern >= 4.7.0.
 
 h3. Version 0.1.0 - 2013/05/06
 
